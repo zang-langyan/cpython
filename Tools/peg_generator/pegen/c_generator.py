@@ -123,6 +123,7 @@ class FunctionCall:
 
 
 class CCallMakerVisitor(GrammarVisitor):
+    verbose = True
     def __init__(
         self,
         parser_generator: ParserGenerator,
@@ -317,7 +318,7 @@ class CCallMakerVisitor(GrammarVisitor):
         else:
             name = rule_generation_func()
             self.cache[key] = name
-
+        print(f'    {name}')
         return FunctionCall(
             assigned_variable=f"{name}_var",
             function=f"{name}_rule",
@@ -326,7 +327,12 @@ class CCallMakerVisitor(GrammarVisitor):
             comment=node_str,
         )
 
+    def print_generate_artificial_rule(self, node):
+        if self.verbose:
+            print(f'Gen from [{node.__class__.__name__}] {node}')
+
     def visit_Rhs(self, node: Rhs) -> FunctionCall:
+        self.print_generate_artificial_rule(node)
         if node.can_be_inlined:
             return self.generate_call(node.alts[0].items[0])
 
@@ -337,6 +343,7 @@ class CCallMakerVisitor(GrammarVisitor):
         )
 
     def visit_Repeat0(self, node: Repeat0) -> FunctionCall:
+        self.print_generate_artificial_rule(node)
         return self._generate_artificial_rule_call(
             node,
             "repeat0",
@@ -345,6 +352,7 @@ class CCallMakerVisitor(GrammarVisitor):
         )
 
     def visit_Repeat1(self, node: Repeat1) -> FunctionCall:
+        self.print_generate_artificial_rule(node)
         return self._generate_artificial_rule_call(
             node,
             "repeat1",
@@ -353,6 +361,7 @@ class CCallMakerVisitor(GrammarVisitor):
         )
 
     def visit_Gather(self, node: Gather) -> FunctionCall:
+        self.print_generate_artificial_rule(node)
         return self._generate_artificial_rule_call(
             node,
             "gather",
@@ -364,6 +373,7 @@ class CCallMakerVisitor(GrammarVisitor):
         return self.generate_call(node.rhs)
 
     def visit_Cut(self, node: Cut) -> FunctionCall:
+        self.print_generate_artificial_rule(node)
         return FunctionCall(
             assigned_variable="_cut_var",
             return_type="int",
@@ -451,6 +461,10 @@ class CParserGenerator(ParserGenerator, GrammarVisitor):
             self.print("PyErr_NoMemory();")
             self.print(f"goto {goto_target};")
         self.print("}")
+
+    def print_all_rules(self):
+        for rulename, rule in self.all_rules.items():
+            print(rule)
 
     def generate(self, filename: str) -> None:
         self.collect_rules()

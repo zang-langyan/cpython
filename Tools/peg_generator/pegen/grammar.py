@@ -2,18 +2,29 @@ from __future__ import annotations
 
 from collections.abc import Iterable, Iterator, Set
 from typing import Any
-
+import contextlib
 
 class GrammarError(Exception):
     pass
 
 
 class GrammarVisitor:
+    level = 0
+    @contextlib.contextmanager
+    def indent(self) -> Iterator[None]:
+        self.level += 1
+        try:
+            yield
+        finally:
+            self.level -= 1
+
     def visit(self, node: Any, *args: Any, **kwargs: Any) -> Any:
         """Visit a node."""
         method = "visit_" + node.__class__.__name__
         visitor = getattr(self, method, self.generic_visit)
-        return visitor(node, *args, **kwargs)
+        with self.indent():
+            print(f'{" " * 4 * (self.level - 1)}[{node.__class__.__name__}]', node)
+            return visitor(node, *args, **kwargs)
 
     def generic_visit(self, node: Iterable[Any], *args: Any, **kwargs: Any) -> Any:
         """Called if no explicit visitor function exists for a node."""
@@ -37,7 +48,11 @@ class Grammar:
         self.metas = dict(metas)
 
     def __str__(self) -> str:
-        return "\n".join(str(rule) for name, rule in self.rules.items())
+        res = 'Grammar Metas:\n'
+        for name, m in self.metas.items():
+            res += f'{name}: {m}\n'
+        res += '\nGrammar Rules:\n'
+        return res + "\n".join(str(rule) for name, rule in self.rules.items())
 
     def __repr__(self) -> str:
         lines = ["Grammar("]

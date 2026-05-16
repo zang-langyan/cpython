@@ -64,15 +64,15 @@ with open(grammar_file) as f:
     # print('\nGrammar:')
     # print(grammar)
 
-    visitor = GrammarVisitor()
-    print('Grammar Visitor:')
-    for name, rule in grammar.rules.items():
-        visitor.visit(rule)
+    # visitor = GrammarVisitor()
+    # print('Grammar Visitor:')
+    # for name, rule in grammar.rules.items():
+    #     visitor.visit(rule)
 
-    # with open(tokens_file) as tok_file:
-    #     all_tokens, exact_tok, non_exact_tok = generate_token_definitions(tok_file)
-    # with tempfile.TemporaryFile(mode='w+t') as file:
-    #     gen: ParserGenerator = CParserGenerator(
-    #         grammar, all_tokens, exact_tok, non_exact_tok, file, skip_axtions=False
-    #     )
-    #     gen.collect_rules()
+    with open(tokens_file) as tok_file:
+        all_tokens, exact_tok, non_exact_tok = generate_token_definitions(tok_file)
+    with tempfile.TemporaryFile(mode='w+t') as file:
+        gen: ParserGenerator = CParserGenerator(
+            grammar, all_tokens, exact_tok, non_exact_tok, file, skip_actions=False
+        )
+        gen.collect_rules()

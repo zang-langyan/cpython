@@ -22,9 +22,9 @@ class GrammarVisitor:
         """Visit a node."""
         method = "visit_" + node.__class__.__name__
         visitor = getattr(self, method, self.generic_visit)
-        with self.indent():
-            print(f'{" " * 4 * (self.level - 1)}[{node.__class__.__name__}]', node)
-            return visitor(node, *args, **kwargs)
+        # with self.indent():
+        #     print(f'{" " * 4 * (self.level - 1)}[{node.__class__.__name__}]', node)
+        return visitor(node, *args, **kwargs)
 
     def generic_visit(self, node: Iterable[Any], *args: Any, **kwargs: Any) -> Any:
         """Called if no explicit visitor function exists for a node."""

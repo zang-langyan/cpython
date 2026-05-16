@@ -1,0 +1,623 @@
+Gen from [Rhs] statements
+Gen from [Repeat0] NEWLINE*
+    _loop0_1
+Gen from [Rhs] type_expressions
+Gen from [Repeat0] NEWLINE*
+    _loop0_1
+Gen from [Repeat1] statement+
+    _loop1_2
+Gen from [Gather] ';'.simple_stmt+
+    _gather_4
+Gen from [Rhs] ';'
+Gen from [Rhs] 'import' | 'from' | "lazy"
+    _tmp_5
+Gen from [Rhs] 'def' | '@' | 'async'
+    _tmp_6
+Gen from [Rhs] 'class' | '@'
+    _tmp_7
+Gen from [Rhs] 'with' | 'async'
+    _tmp_8
+Gen from [Rhs] 'for' | 'async'
+    _tmp_9
+Gen from [Rhs] '=' annotated_rhs
+    _tmp_10
+Gen from [Rhs] '(' single_target ')' | single_subscript_attribute_target
+    _tmp_11
+Gen from [Rhs] '=' annotated_rhs
+    _tmp_10
+Gen from [Repeat1] ((star_targets '='))+
+    _loop1_12
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Cut] ~
+Gen from [Rhs] star_expressions
+Gen from [Gather] ','.NAME+
+    _gather_14
+Gen from [Gather] ','.NAME+
+    _gather_14
+Gen from [Rhs] ';' | NEWLINE
+    _tmp_15
+Gen from [Rhs] ',' expression
+    _tmp_16
+Gen from [Repeat0] (('.' | '...'))*
+    _loop0_17
+Gen from [Repeat1] (('.' | '...'))+
+    _loop1_18
+Gen from [Rhs] ','
+Gen from [Gather] ','.import_from_as_name+
+    _gather_20
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Gather] ','.dotted_as_name+
+    _gather_23
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Repeat1] (('@' named_expression NEWLINE))+
+    _loop1_24
+Gen from [Rhs] type_params
+Gen from [Rhs] '(' arguments? ')'
+    _tmp_25
+Gen from [Rhs] type_params
+Gen from [Rhs] params
+Gen from [Rhs] '->' expression
+    _tmp_26
+Gen from [Rhs] func_type_comment
+Gen from [Rhs] type_params
+Gen from [Rhs] params
+Gen from [Rhs] '->' expression
+    _tmp_26
+Gen from [Rhs] func_type_comment
+Gen from [Repeat0] param_no_default*
+    _loop0_27
+Gen from [Repeat0] param_with_default*
+    _loop0_28
+Gen from [Rhs] star_etc
+Gen from [Repeat0] param_with_default*
+    _loop0_28
+Gen from [Rhs] star_etc
+Gen from [Repeat1] param_no_default+
+    _loop1_29
+Gen from [Repeat0] param_with_default*
+    _loop0_28
+Gen from [Rhs] star_etc
+Gen from [Repeat1] param_with_default+
+    _loop1_30
+Gen from [Rhs] star_etc
+Gen from [Repeat1] param_no_default+
+    _loop1_29
+Gen from [Repeat1] param_no_default+
+    _loop1_29
+Gen from [Repeat0] param_no_default*
+    _loop0_27
+Gen from [Repeat1] param_with_default+
+    _loop1_30
+Gen from [Repeat0] param_no_default*
+    _loop0_27
+Gen from [Repeat1] param_with_default+
+    _loop1_30
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Rhs] kwds
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Rhs] kwds
+Gen from [Repeat1] param_maybe_default+
+    _loop1_32
+Gen from [Rhs] kwds
+Gen from [Rhs] else_block
+Gen from [Rhs] else_block
+Gen from [Rhs] else_block
+Gen from [Cut] ~
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Rhs] else_block
+Gen from [Cut] ~
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Rhs] else_block
+Gen from [Gather] ','.with_item+
+    _gather_34
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Gather] ','.with_item+
+    _gather_34
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Gather] ','.with_item+
+    _gather_34
+Gen from [Gather] ','.with_item+
+    _gather_34
+Gen from [Rhs] TYPE_COMMENT
+Gen from [Rhs] ',' | ')' | ':'
+    _tmp_35
+Gen from [Repeat1] except_block+
+    _loop1_36
+Gen from [Rhs] else_block
+Gen from [Rhs] finally_block
+Gen from [Repeat1] except_star_block+
+    _loop1_37
+Gen from [Rhs] else_block
+Gen from [Rhs] finally_block
+Gen from [Repeat1] case_block+
+    _loop1_38
+Gen from [Gather] '|'.closed_pattern+
+    _gather_40
+Gen from [Rhs] '+' | '-'
+    _tmp_41
+Gen from [Rhs] '+' | '-'
+    _tmp_41
+Gen from [Rhs] STRING | FSTRING_START | TSTRING_START
+    _tmp_42
+Gen from [Rhs] '.' | '(' | '='
+    _tmp_43
+Gen from [Rhs] '.' | '(' | '='
+    _tmp_43
+Gen from [Gather] ','.maybe_star_pattern+
+    _gather_45
+Gen from [Gather] ','.key_value_pattern+
+    _gather_47
+Gen from [Rhs] literal_expr | attr
+    _tmp_48
+Gen from [Gather] ','.pattern+
+    _gather_50
+Gen from [Gather] ','.keyword_pattern+
+    _gather_52
+Gen from [Rhs] type_params
+Gen from [Gather] ','.type_param+
+    _gather_54
+Gen from [Rhs] ','
+Gen from [Rhs] type_param_bound
+Gen from [Rhs] type_param_default
+Gen from [Rhs] type_param_starred_default
+Gen from [Rhs] type_param_default
+Gen from [Repeat1] ((',' expression))+
+    _loop1_55
+Gen from [Rhs] ','
+Gen from [Rhs] star_expressions
+Gen from [Repeat1] ((',' star_expression))+
+    _loop1_56
+Gen from [Rhs] ','
+Gen from [Gather] ','.star_named_expression+
+    _gather_58
+Gen from [Rhs] ','
+Gen from [Gather] ','.star_named_expression_sequence+
+    _gather_60
+Gen from [Rhs] ','
+Gen from [Cut] ~
+Gen from [Repeat1] (('or' conjunction))+
+    _loop1_61
+Gen from [Repeat1] (('and' inversion))+
+    _loop1_62
+Gen from [Repeat1] compare_op_bitwise_or_pair+
+    _loop1_63
+Gen from [Rhs] '!='
+    _tmp_64
+Gen from [Rhs] arguments
+Gen from [Gather] ','.(slice | starred_expression)+
+    _gather_66
+Gen from [Rhs] ','
+Gen from [Rhs] expression
+Gen from [Rhs] expression
+Gen from [Rhs] ':' expression?
+    _tmp_67
+Gen from [Rhs] STRING | FSTRING_START | TSTRING_START
+    _tmp_42
+Gen from [Rhs] genexp | tuple | group
+    _tmp_68
+Gen from [Rhs] listcomp | list
+    _tmp_69
+Gen from [Rhs] dictcomp | setcomp | dict | set
+    _tmp_70
+Gen from [Rhs] yield_expr | named_expression
+    _tmp_71
+Gen from [Rhs] lambda_params
+Gen from [Repeat0] lambda_param_no_default*
+    _loop0_72
+Gen from [Repeat0] lambda_param_with_default*
+    _loop0_73
+Gen from [Rhs] lambda_star_etc
+Gen from [Repeat0] lambda_param_with_default*
+    _loop0_73
+Gen from [Rhs] lambda_star_etc
+Gen from [Repeat1] lambda_param_no_default+
+    _loop1_74
+Gen from [Repeat0] lambda_param_with_default*
+    _loop0_73
+Gen from [Rhs] lambda_star_etc
+Gen from [Repeat1] lambda_param_with_default+
+    _loop1_75
+Gen from [Rhs] lambda_star_etc
+Gen from [Repeat1] lambda_param_no_default+
+    _loop1_74
+Gen from [Repeat1] lambda_param_no_default+
+    _loop1_74
+Gen from [Repeat0] lambda_param_no_default*
+    _loop0_72
+Gen from [Repeat1] lambda_param_with_default+
+    _loop1_75
+Gen from [Repeat0] lambda_param_no_default*
+    _loop0_72
+Gen from [Repeat1] lambda_param_with_default+
+    _loop1_75
+Gen from [Repeat0] lambda_param_maybe_default*
+    _loop0_76
+Gen from [Rhs] lambda_kwds
+Gen from [Repeat1] lambda_param_maybe_default+
+    _loop1_77
+Gen from [Rhs] lambda_kwds
+Gen from [Rhs] fstring_conversion
+Gen from [Rhs] fstring_full_format_spec
+Gen from [Repeat0] fstring_format_spec*
+    _loop0_78
+Gen from [Repeat0] fstring_middle*
+    _loop0_79
+Gen from [Rhs] fstring_conversion
+Gen from [Rhs] tstring_full_format_spec
+Gen from [Repeat0] tstring_format_spec*
+    _loop0_80
+Gen from [Rhs] fstring_conversion
+Gen from [Rhs] tstring_full_format_spec
+Gen from [Repeat0] tstring_middle*
+    _loop0_81
+Gen from [Repeat1] ((fstring | string))+
+    _loop1_82
+Gen from [Repeat1] tstring+
+    _loop1_83
+Gen from [Rhs] star_named_expressions_sequence
+Gen from [Rhs] star_named_expression_sequence ',' star_named_expressions_sequence?
+    _tmp_84
+Gen from [Rhs] double_starred_kvpairs
+Gen from [Gather] ','.double_starred_kvpair+
+    _gather_86
+Gen from [Rhs] ','
+Gen from [Repeat1] for_if_clause+
+    _loop1_87
+Gen from [Cut] ~
+Gen from [Repeat0] (('if' disjunction))*
+    _loop0_88
+Gen from [Cut] ~
+Gen from [Repeat0] (('if' disjunction))*
+    _loop0_88
+Gen from [Rhs] assignment_expression | expression !':=' | starred_expression
+    _tmp_89
+Gen from [Rhs] ','
+Gen from [Gather] ','.(starred_expression | (assignment_expression | expression !':=') !'=')+
+    _gather_91
+Gen from [Rhs] ',' kwargs
+    _tmp_92
+Gen from [Gather] ','.kwarg_or_starred+
+    _gather_94
+Gen from [Gather] ','.kwarg_or_double_starred+
+    _gather_96
+Gen from [Gather] ','.kwarg_or_starred+
+    _gather_94
+Gen from [Gather] ','.kwarg_or_double_starred+
+    _gather_96
+Gen from [Repeat0] ((',' star_target))*
+    _loop0_97
+Gen from [Rhs] ','
+Gen from [Gather] ','.star_target+
+    _gather_99
+Gen from [Rhs] ','
+Gen from [Repeat1] ((',' star_target))+
+    _loop1_100
+Gen from [Rhs] ','
+Gen from [Rhs] !'*' star_target
+    _tmp_101
+Gen from [Rhs] star_targets_tuple_seq
+Gen from [Rhs] star_targets_list_seq
+Gen from [Rhs] arguments
+Gen from [Gather] ','.del_target+
+    _gather_103
+Gen from [Rhs] ','
+Gen from [Rhs] del_targets
+Gen from [Rhs] del_targets
+Gen from [Gather] ','.expression+
+    _gather_105
+Gen from [Gather] ','.expression+
+    _gather_105
+Gen from [Gather] ','.expression+
+    _gather_105
+Gen from [Gather] ','.expression+
+    _gather_105
+Gen from [Rhs] NEWLINE INDENT
+    _tmp_106
+Gen from [Rhs] (','.(starred_expression | (assignment_expression | expression !':=') !'=')+ ',' kwargs) | kwargs
+    _tmp_107
+Gen from [Gather] ','.(starred_expression !'=')+
+    _gather_109
+Gen from [Rhs] args | expression for_if_clauses
+    _tmp_110
+Gen from [Rhs] args ','
+    _tmp_111
+Gen from [Rhs] ',' | ')'
+    _tmp_112
+Gen from [Rhs] 'True' | 'False' | 'None'
+    _tmp_113
+Gen from [Rhs] NAME '='
+    _tmp_114
+Gen from [Repeat1] ((!STRING expression_without_invalid))+
+    _loop1_115
+Gen from [Rhs] NAME STRING | SOFT_KEYWORD
+    _tmp_116
+Gen from [Rhs] 'else' | ':'
+    _tmp_117
+Gen from [Rhs] pass_stmt | break_stmt | continue_stmt
+    _tmp_118
+Gen from [Rhs] lambda_params
+Gen from [Rhs] lambda_params
+Gen from [Rhs] '=' | ':='
+    _tmp_119
+Gen from [Rhs] list | tuple | genexp | 'True' | 'None' | 'False'
+    _tmp_120
+Gen from [Rhs] '=' | ':='
+    _tmp_119
+Gen from [Repeat0] star_named_expressions*
+    _loop0_121
+Gen from [Repeat0] ((star_targets '='))*
+    _loop0_122
+Gen from [Repeat0] ((star_targets '='))*
+    _loop0_122
+Gen from [Rhs] '[' | '{'
+    _tmp_123
+Gen from [Rhs] '[' | '{'
+    _tmp_123
+Gen from [Rhs] slash_no_default | slash_with_default
+    _tmp_124
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Repeat0] param_no_default*
+    _loop0_27
+Gen from [Repeat0] param_no_default*
+    _loop0_27
+Gen from [Repeat1] param_no_default+
+    _loop1_29
+Gen from [Rhs] slash_no_default | slash_with_default
+    _tmp_124
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Rhs] ',' | param_no_default
+    _tmp_125
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Repeat1] param_maybe_default+
+    _loop1_32
+Gen from [Rhs] ')' | ','
+    _tmp_126
+Gen from [Rhs] ')' | ',' (')' | '**')
+    _tmp_127
+Gen from [Rhs] param_no_default | ','
+    _tmp_128
+Gen from [Repeat0] param_maybe_default*
+    _loop0_31
+Gen from [Rhs] param_no_default | ','
+    _tmp_128
+Gen from [Rhs] '*' | '**' | '/'
+    _tmp_129
+Gen from [Repeat1] param_with_default+
+    _loop1_30
+Gen from [Rhs] lambda_slash_no_default | lambda_slash_with_default
+    _tmp_130
+Gen from [Repeat0] lambda_param_maybe_default*
+    _loop0_76
+Gen from [Repeat0] lambda_param_no_default*
+    _loop0_72
+Gen from [Repeat0] lambda_param_no_default*
+    _loop0_72
+Gen from [Gather] ','.lambda_param+
+    _gather_132
+Gen from [Rhs] lambda_slash_no_default | lambda_slash_with_default
+    _tmp_130
+Gen from [Repeat0] lambda_param_maybe_default*
+    _loop0_76
+Gen from [Rhs] ',' | lambda_param_no_default
+    _tmp_133
+Gen from [Repeat0] lambda_param_maybe_default*
+    _loop0_76
+Gen from [Repeat1] lambda_param_maybe_default+
+    _loop1_77
+Gen from [Repeat1] lambda_param_with_default+
+    _loop1_75
+Gen from [Rhs] ':' | ',' (':' | '**')
+    _tmp_134
+Gen from [Rhs] lambda_param_no_default | ','
+    _tmp_135
+Gen from [Repeat0] lambda_param_maybe_default*
+    _loop0_76
+Gen from [Rhs] lambda_param_no_default | ','
+    _tmp_135
+Gen from [Rhs] '*' | '**' | '/'
+    _tmp_129
+Gen from [Rhs] ',' | ')' | ':'
+    _tmp_35
+Gen from [Rhs] bitwise_or ((',' bitwise_or))* ','?
+    _tmp_136
+Gen from [Gather] ','.dotted_name+
+    _gather_138
+Gen from [Rhs] NAME (',' | ')' | ';' | NEWLINE)
+    _tmp_139
+Gen from [Rhs] NAME (',' | ')' | ';' | NEWLINE)
+    _tmp_139
+Gen from [Rhs] 'async'
+Gen from [Gather] ','.(expression ['as' star_target])+
+    _gather_141
+Gen from [Rhs] 'async'
+Gen from [Gather] ','.(expression ['as' star_target])+
+    _gather_141
+Gen from [Rhs] 'async'
+Gen from [Gather] ','.(expressions ['as' star_target])+
+    _gather_143
+Gen from [Rhs] 'async'
+Gen from [Gather] ','.(expression ['as' star_target])+
+    _gather_141
+Gen from [Rhs] 'async'
+Gen from [Gather] ','.(expressions ['as' star_target])+
+    _gather_143
+Gen from [Rhs] 'except' | 'finally'
+    _tmp_144
+Gen from [Repeat0] block*
+    _loop0_145
+Gen from [Repeat1] except_block+
+    _loop1_36
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Repeat0] block*
+    _loop0_145
+Gen from [Repeat1] except_star_block+
+    _loop1_37
+Gen from [Rhs] expression ['as' NAME]
+    _tmp_146
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Rhs] NEWLINE | ':'
+    _tmp_147
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Rhs] items_pattern ','
+    _tmp_148
+Gen from [Rhs] positional_patterns ','
+    _tmp_149
+Gen from [Rhs] 'async'
+Gen from [Rhs] 'async'
+Gen from [Rhs] 'async'
+Gen from [Rhs] type_params
+Gen from [Rhs] params
+Gen from [Rhs] '->' expression
+    _tmp_26
+Gen from [Rhs] 'async'
+Gen from [Rhs] type_params
+Gen from [Rhs] params
+Gen from [Rhs] '->' expression
+    _tmp_26
+Gen from [Rhs] func_type_comment
+Gen from [Rhs] type_params
+Gen from [Rhs] '(' arguments? ')'
+    _tmp_25
+Gen from [Rhs] type_params
+Gen from [Rhs] '(' arguments? ')'
+    _tmp_25
+Gen from [Rhs] ','
+Gen from [Gather] ','.double_starred_kvpair+
+    _gather_86
+Gen from [Rhs] invalid_kvpair | invalid_kvpair_unpacking
+    _tmp_150
+Gen from [Rhs] '}' | ','
+    _tmp_151
+Gen from [Rhs] ':'
+Gen from [Rhs] '}' | ','
+    _tmp_151
+Gen from [Rhs] '=' | '!' | ':' | '}'
+    _tmp_152
+Gen from [Rhs] '!' | ':' | '}'
+    _tmp_153
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Rhs] ':' | '}'
+    _tmp_155
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Repeat0] fstring_format_spec*
+    _loop0_78
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Rhs] ':' | '}'
+    _tmp_155
+Gen from [Rhs] '=' | '!' | ':' | '}'
+    _tmp_152
+Gen from [Rhs] '!' | ':' | '}'
+    _tmp_153
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Rhs] ':' | '}'
+    _tmp_155
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Repeat0] fstring_format_spec*
+    _loop0_78
+Gen from [Rhs] '!' NAME
+    _tmp_154
+Gen from [Rhs] ':' | '}'
+    _tmp_155
+Gen from [Repeat1] ((fstring | string))+
+    _loop1_82
+Gen from [Repeat1] tstring+
+    _loop1_83
+Gen from [Rhs] fstring | string
+    _tmp_156
+Gen from [Rhs] '+' | '-' | '*' | '/' | '%' | '//' | '@'
+    _tmp_157
+Gen from [Rhs] '+' | '-' | '~'
+    _tmp_158
+Gen from [Rhs] star_targets '='
+    _tmp_159
+Gen from [Rhs] '.' | '...'
+    _tmp_160
+Gen from [Rhs] '.' | '...'
+    _tmp_160
+Gen from [Rhs] '@' named_expression NEWLINE
+    _tmp_161
+Gen from [Rhs] arguments
+Gen from [Rhs] ',' expression
+    _tmp_16
+Gen from [Rhs] ',' star_expression
+    _tmp_162
+Gen from [Rhs] 'or' conjunction
+    _tmp_163
+Gen from [Rhs] 'and' inversion
+    _tmp_164
+Gen from [Rhs] slice | starred_expression
+    _tmp_165
+Gen from [Rhs] slice | starred_expression
+    _tmp_165
+Gen from [Rhs] expression
+Gen from [Rhs] fstring | string
+    _tmp_156
+Gen from [Rhs] star_named_expressions_sequence
+Gen from [Rhs] 'if' disjunction
+    _tmp_166
+Gen from [Rhs] starred_expression | (assignment_expression | expression !':=') !'='
+    _tmp_167
+Gen from [Rhs] starred_expression | (assignment_expression | expression !':=') !'='
+    _tmp_167
+Gen from [Rhs] ',' star_target
+    _tmp_168
+Gen from [Rhs] ',' star_target
+    _tmp_168
+Gen from [Rhs] ','.(starred_expression | (assignment_expression | expression !':=') !'=')+ ',' kwargs
+    _tmp_169
+Gen from [Rhs] starred_expression !'='
+    _tmp_170
+Gen from [Rhs] starred_expression !'='
+    _tmp_170
+Gen from [Rhs] !STRING expression_without_invalid
+    _tmp_171
+Gen from [Rhs] star_targets '='
+    _tmp_159
+Gen from [Rhs] ')' | '**'
+    _tmp_172
+Gen from [Rhs] ':' | '**'
+    _tmp_173
+Gen from [Repeat0] ((',' bitwise_or))*
+    _loop0_174
+Gen from [Rhs] ','
+Gen from [Rhs] ',' | ')' | ';' | NEWLINE
+    _tmp_175
+Gen from [Rhs] expression ['as' star_target]
+    _tmp_176
+Gen from [Rhs] expression ['as' star_target]
+    _tmp_176
+Gen from [Rhs] expressions ['as' star_target]
+    _tmp_177
+Gen from [Rhs] expressions ['as' star_target]
+    _tmp_177
+Gen from [Rhs] 'as' NAME
+    _tmp_21
+Gen from [Rhs] assignment_expression | expression !':='
+    _tmp_178
+Gen from [Gather] ','.(starred_expression | (assignment_expression | expression !':=') !'=')+
+    _gather_91
+Gen from [Rhs] ',' bitwise_or
+    _tmp_179
+Gen from [Rhs] 'as' star_target
+    _tmp_180
+Gen from [Rhs] 'as' star_target
+    _tmp_180

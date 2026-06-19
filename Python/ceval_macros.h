@@ -523,6 +523,16 @@ check_periodics(PyThreadState *tstate) {
     if (_Py_atomic_load_uintptr_relaxed(&tstate->eval_breaker) & _PY_EVAL_EVENTS_MASK) {
         return _Py_HandlePending(tstate);
     }
+    if (tstate->timeout_block && ++tstate->timeout_block->skip_counter >= TIMEOUTCHECK_INTERVAL) {
+        PyTime_t now;
+        PyTime_Monotonic(&now);
+        tstate->timeout_block->skip_counter = 0;
+        if (now > tstate->timeout_block->deadline) {
+            tstate->timeout_block->deadline = (PyTime_t)INT64_MAX;
+            PyErr_SetString(PyExc_TimeoutError, "Timeout");
+            return -1;
+        }
+    }
     return 0;
 }
 
